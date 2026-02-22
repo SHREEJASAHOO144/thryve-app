@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Mental Wellness</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="{{ session.get('theme','light') }}">
+
+
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/profile">Assessment</a>
+        <a href="/mood">Mood</a>
+        <a href="/support">Support</a>
+        <a href="/settings">Settings</a>
+        <a href="/help">Help</a>
+        <a href="/logout">Logout</a>
+    
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </div>
+    
+    
+
+<!-- HERO SECTION -->
+<div class="hero">
+
+    <h1 class="app-title">
+        Thryve
+    </h1>
+
+
+    <p class="subtitle">
+        Your safe companion for managing stress, emotions, and academic pressure 💛
+    </p>
+
+    <a href="{{ url_for('profile') }}">
+        <button class="main-btn">Start Assessment</button>
+    </a>
+
+</div>
+
+
+<!-- FEATURES -->
+<div class="features-section">
+
+    <h2>Features</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">📊</div>
+            <h3>Stress Analysis</h3>
+            <p>Understand your stress level instantly</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">😊</div>
+            <h3>Mood Tracker</h3>
+            <p>Track your daily emotional health</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🧘</div>
+            <h3>Support Tools</h3>
+            <p>Get personalized wellness guidance</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🌟</div>
+            <h3>Motivation Hub</h3>
+            <p>Get daily inspiration and wellness tips</p>
+        </div>
+        
+
+    </div>
+
+</div>
+
+<script>
+    function toggleTheme() {
+        let body = document.body;
+    
+        if (body.classList.contains("dark")) {
+            body.classList.remove("dark");
+            body.classList.add("light");
+            localStorage.setItem("theme", "light");
+        } else {
+            body.classList.remove("light");
+            body.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        }
+    }
+    
+    window.onload = function() {
+        let saved = localStorage.getItem("theme");
+        if (saved) document.body.className = saved;
+    }
+    </script>
+    
+    
+
+</body>
+</html>
