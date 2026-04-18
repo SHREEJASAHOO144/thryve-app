@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Settings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="{{ session.get('theme','light') }}">
+
+    <a href="{{ url_for('index') }}" class="back-arrow">←</a>
+
+<div class="page-bg">
+<div class="form-card">
+
+    <h2 class="form-title">⚙️ {{ t.settings }}</h2>
+
+<form method="POST">
+
+<h3>🌐 {{ t.language }}</h3>
+
+<select name="lang">
+    <option value="en" {% if session.get('lang') == 'en' %}selected{% endif %}>
+        English
+    </option>
+    <option value="hi" {% if session.get('lang') == 'hi' %}selected{% endif %}>
+        हिंदी
+    </option>
+    <option value="bn" {% if session.get('lang') == 'bn' %}selected{% endif %}>
+        বাংলা
+    </option>
+</select>
+
+<button class="next-btn">{{ t.save }}</button>
+
+</form>
+
+</div>
+</div>
+
+<script>
+    function toggleTheme() {
+        let body = document.body;
+    
+        if (body.classList.contains("dark")) {
+            body.classList.remove("dark");
+            body.classList.add("light");
+            localStorage.setItem("theme", "light");
+        } else {
+            body.classList.remove("light");
+            body.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        }
+    }
+    
+    window.onload = function() {
+        let saved = localStorage.getItem("theme");
+        if (saved) document.body.className = saved;
+    }
+    </script>
+    
+    
+
+</body>
+</html>

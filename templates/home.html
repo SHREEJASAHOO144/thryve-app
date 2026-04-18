@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Mental Wellness</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="{{ session.get('theme','light') }}">
+
+
+    <div class="navbar">
+        <a href="/" class="nav-item home">{{ t.nav_home }}</a>
+<a href="/profile" class="nav-item assess">{{ t.nav_assessment }}</a>
+<a href="/mood" class="nav-item mood">{{ t.nav_mood }}</a>
+<a href="/support" class="nav-item support">{{ t.nav_support }}</a>
+<a href="/settings" class="nav-item settings">{{ t.nav_settings }}</a>
+<a href="/help" class="nav-item help">{{ t.nav_help }}</a>
+<a href="/logout" class="nav-item logout">{{ t.nav_logout }}</a>
+    
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </div>
+    
+    
+
+<!-- HERO SECTION -->
+<div class="hero">
+
+    <h1 class="app-title">
+        Thryve
+    </h1>
+
+
+    <p class="subtitle">
+        {{ t.home_sub }}
+    </p>
+
+    <a href="{{ url_for('profile') }}">
+        <button class="main-btn">{{ t.start }}</button>
+    </a>
+
+</div>
+
+
+<!-- FEATURES -->
+<div class="features-section">
+
+    <h2>{{ t.features }}</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">📊</div>
+            <h3>{{ t.card1_title }}</h3>
+            <p>{{ t.card1_text }}</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">😊</div>
+            <h3>{{ t.card2_title }}</h3>
+            <p>{{ t.card2_text }}</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🧘</div>
+            <h3>{{ t.card3_title }}</h3>
+            <p>{{ t.card3_text }}</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🌟</div>
+            <h3>{{ t.card4_title }}</h3>
+            <p>{{ t.card4_text }}</p>
+        </div>
+        
+
+    </div>
+
+</div>
+
+<script>
+    function toggleTheme() {
+        let body = document.body;
+    
+        if (body.classList.contains("dark")) {
+            body.classList.remove("dark");
+            body.classList.add("light");
+            localStorage.setItem("theme", "light");
+        } else {
+            body.classList.remove("light");
+            body.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        }
+    }
+    
+    window.onload = function() {
+        let saved = localStorage.getItem("theme");
+        if (saved) document.body.className = saved;
+    }
+    </script>
+    
+    
+
+</body>
+</html>

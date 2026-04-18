@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Help</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="{{ session.get('theme','light') }}">
+
+    <a href="{{ request.referrer or url_for('index') }}" 
+   class="back-arrow">←</a>
+<div class="page-bg">
+<div class="form-card">
+
+    <h2 class="form-title">❓ {{ t.help_title }}</h2>
+
+    <p>{{ t.help1 }}</p>
+    <p>{{ t.help2 }}</p>
+    <p>{{ t.help3 }}</p>
+    <p>{{ t.help4 }}</p>
+    <p>{{ t.help5 }}</p>
+    <p>{{ t.help6 }}</p>
+    
+    <p>{{ t.help_end }}</p>
+    
+</div>
+</div>
+
+<script>
+    function toggleTheme() {
+        let body = document.body;
+    
+        if (body.classList.contains("dark")) {
+            body.classList.remove("dark");
+            body.classList.add("light");
+            localStorage.setItem("theme", "light");
+        } else {
+            body.classList.remove("light");
+            body.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        }
+    }
+    
+    window.onload = function() {
+        let saved = localStorage.getItem("theme");
+        if (saved) document.body.className = saved;
+    }
+    </script>
+    
+    
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="{{ session.get('theme','light') }}">
+
+    <a href="{{ request.referrer or url_for('index') }}" 
+   class="back-arrow">←</a>
+
+<div class="login-bg">
+
+    <div class="login-card">
+
+        <h2>Register</h2>
+
+        <form method="POST">
+
+            <input name="username"
+                   placeholder="Username"
+                   required>
+
+            <input name="password"
+                   type="password"
+                   placeholder="Password"
+                   required>
+
+            <button class="login-btn">Register</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

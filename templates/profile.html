@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ t.profile_title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="{{ session.get('theme','light') }}">
+
+    <a href="{{ url_for('index') }}" class="back-arrow">←</a>
+
+<div class="page-bg">
+
+    <div class="form-card">
+
+        <h2 class="form-title">✏️ {{ t.profile_title }}</h2>
+<p class="form-subtitle">{{ t.profile_sub }}</p>
+
+<form method="POST" action="{{ url_for('profile') }}">
+
+    <label>{{ t.name }}</label>
+    <input type="text" name="name" placeholder="{{ t.name_ph }}" required>
+
+    <label>{{ t.age }}</label>
+<select name="age" class="age-ph" required>
+    <option value="" disabled selected>{{ t.age_ph }}</option>
+    <option value="11-13">{{ t.age_1 }}</option>
+    <option value="14-16">{{ t.age_2 }}</option>
+    <option value="17-19">{{ t.age_3 }}</option>
+    <option value="20-22">{{ t.age_4 }}</option>
+    <option value="23-25">{{ t.age_5 }}</option>
+</select>
+
+    <label>{{ t.course }}</label>
+    <input type="text" name="course" placeholder="{{ t.course_ph }}" required>
+
+    <button type="submit" class="next-btn">
+        {{ t.next }}
+    </button>
+
+</form>
+
+    </div>
+
+</div>
+
+<script>
+    function toggleTheme() {
+        let body = document.body;
+    
+        if (body.classList.contains("dark")) {
+            body.classList.remove("dark");
+            body.classList.add("light");
+            localStorage.setItem("theme", "light");
+        } else {
+            body.classList.remove("light");
+            body.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        }
+    }
+    
+    window.onload = function() {
+        let saved = localStorage.getItem("theme");
+        if (saved) document.body.className = saved;
+    }
+    </script>
+    
+    
+
+</body>
+</html>

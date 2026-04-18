@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ t.result_title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="{{ session.get('theme','light') }}">
+
+    <a href="{{ url_for('assessment') }}" class="back-arrow">←</a>
+
+<div class="page-bg">
+
+    <div class="form-card">
+
+        <h2 class="form-title">🔥 {{ t.result_title }}</h2>
+
+<div style="font-size:60px;">{{ emoji }}</div>
+
+<div class="score-circle">
+    {{ score }}
+</div>
+
+<p><b>{{ t.stress_level }}</b> {{ level }}</p>
+
+<p>{{ advice }}</p>
+
+<hr>
+
+<h3>💡 {{ t.motivation }}</h3>
+<p>"{{ quote }}"</p>
+
+<hr>
+
+<h3>🧘 {{ t.relax }}</h3>
+<p>• {{ t.tip1 }}</p>
+<p>• {{ t.tip2 }}</p>
+<p>• {{ t.tip3 }}</p>
+
+<div class="result-actions">
+
+    <a href="/mood">
+        <button class="mood-btn">😊 {{ t.track_mood }}</button>
+    </a>
+
+    <a href="/support">
+        <button class="support-btn">🧘 {{ t.get_support }}</button>
+    </a>
+
+</div>
+        
+
+    </div>
+
+</div>
+
+<script>
+    function toggleTheme() {
+        let body = document.body;
+    
+        if (body.classList.contains("dark")) {
+            body.classList.remove("dark");
+            body.classList.add("light");
+            localStorage.setItem("theme", "light");
+        } else {
+            body.classList.remove("light");
+            body.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        }
+    }
+    
+    window.onload = function() {
+        let saved = localStorage.getItem("theme");
+        if (saved) document.body.className = saved;
+    }
+    </script>
+    
+    
+
+</body>
+</html>

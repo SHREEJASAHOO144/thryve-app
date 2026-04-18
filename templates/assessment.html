@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ t.assessment_title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<script>
+window.onload = function() {
+    let savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+        document.body.className = savedTheme;
+    }
+}
+</script>
+
+<body class="{{ session.get('theme','light') }}">
+
+<a href="{{ url_for('profile') }}" class="back-arrow">←</a>
+
+<div class="page-bg">
+    <div class="form-card">
+
+        <h2 class="form-title">🧠 {{ t.assessment_title }}</h2>
+        <p class="form-subtitle">
+            {{ t.assessment_sub }}
+        </p>
+
+        <form method="POST" action="{{ url_for('assessment') }}">
+
+            <!-- Sleep -->
+            <label>⏰ {{ t.sleep }}</label>
+            <select name="sleep" required>
+                <option value="3">{{ t.sleep_low }}</option>
+                <option value="2">{{ t.sleep_mid }}</option>
+                <option value="1">{{ t.sleep_high }}</option>
+            </select>
+
+            <!-- Mood -->
+            <label>😟 {{ t.mood }}</label>
+            <select name="mood" required>
+                <option value="3">{{ t.mood_low }}</option>
+                <option value="2">{{ t.mood_mid }}</option>
+                <option value="1">{{ t.mood_high }}</option>
+            </select>
+
+            <!-- Pressure -->
+            <label>🏠 {{ t.pressure }}</label>
+            <select name="pressure" required>
+                <option value="3">{{ t.press_high }}</option>
+                <option value="2">{{ t.press_mid }}</option>
+                <option value="1">{{ t.press_low }}</option>
+            </select>
+
+            <button type="submit" class="next-btn">
+                {{ t.check }}
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
