@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="{{ session.get('theme','light') }}">
+
+    <button onclick="history.back()" class="back-arrow">←</button>
+
+<div class="page-bg">
+
+    <div class="form-card">
+
+        <h2 class="form-title">😊 Daily Mood Tracker</h2>
+
+        <p class="form-subtitle">
+            How are you feeling today?
+        </p>
+
+        <form method="POST" action="{{ url_for('mood') }}">
+
+            <!-- Mood dropdown -->
+            <select name="mood" class="mood-select">
+                <option>😊 Good</option>
+                <option>😐 Okay</option>
+                <option>😞 Low</option>
+                <option>😣 Very Stressed</option>
+            </select>
+
+            <!-- Journal box -->
+            <textarea name="journal"
+                      placeholder="Write your thoughts..."
+                      rows="5"></textarea>
+
+            <!-- Save button -->
+            <button type="submit" class="next-btn">
+                Save
+            </button>
+
+        </form>
+
+        <!-- Back link -->
+        <hr>
+
+<h3>📅 Mood History</h3>
+
+{% for m in history %}
+<p>{{ m }}</p>
+{% endfor %}
+
+<a href="{{ url_for('index') }}" class="back-link">
+            Back Home
+        </a>
+
+    </div>
+
+</div>
+
+
+    
+    
+
+</body>
+</html>

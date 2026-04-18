@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Support</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="{{ session.get('theme','light') }}">
+
+    <a href="/" class="back-arrow">←</a>
+    
+<div class="page-bg">
+
+    <div class="form-card">
+
+        <h2 class="form-title">🎧 Support Resources</h2>
+
+<p>If you feel overwhelmed, you are not alone 💛</p>
+
+<h3>🤝 Talk to Someone</h3>
+<p>• Call a friend or family member</p>
+<p>• Talk to a trusted teacher</p>
+<p>• Visit a counselor</p>
+
+<h3>📞 Helpline</h3>
+<p><b>India Mental Health Helpline</b><br>
+1800-599-0019</p>
+
+<h3>📚 Student Tips</h3>
+<p>• Take regular study breaks</p>
+<p>• Maintain sleep schedule</p>
+<p>• Avoid overworking</p>
+
+<a href="/">
+    <button class="next-btn">⬅ Back to Home</button>
+</a>
+
+
+    </div>
+
+</div>
+
+<script>
+    function toggleTheme() {
+        let body = document.body;
+    
+        if (body.classList.contains("dark")) {
+            body.classList.remove("dark");
+            body.classList.add("light");
+            localStorage.setItem("theme", "light");
+        } else {
+            body.classList.remove("light");
+            body.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        }
+    }
+    
+    window.onload = function() {
+        let saved = localStorage.getItem("theme");
+        if (saved) document.body.className = saved;
+    }
+    </script>
+    
+    
+
+</body>
+</html>
